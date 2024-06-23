@@ -47,15 +47,18 @@ const ComentarioSchema = {
 
 class Comentario extends Model {
   static associate(models) {
-    this.hasMany(models.Usuario, {
-      as: 'usuario',
+    // Modelo Comentario
+    models.Comentario.belongsTo(models.Usuario, {
       foreignKey: 'id_usuario',
+      as: 'usuario'
     });
 
-    this.hasMany(models.Publicacion, {
-      as: 'publicacion',
-      foreignKey: 'id_publicacion',
+    // Modelo Usuario
+    models.Usuario.hasMany(models.Comentario, {
+      foreignKey: 'id_usuario',
+      as: 'comentarios'
     });
+
   }
 
   static config(sequelize) {
