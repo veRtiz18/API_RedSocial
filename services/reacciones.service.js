@@ -47,13 +47,13 @@ class ReaccionesService {
           as: 'usuario',
           attributes: ['nombre_usuario'], // Specify the fields you need
         },
-        // {
-        //   model: models.Publicacion,
-        //   as: 'publicacion',
-        //   attributes: ['id_publicacion', 'id_usuario', 'publicacion_data', 'publicacion_imagen', 'fecha_publicacion', 'id_tipo_privacidad'],
-        //   where: { id_publicacion: parseInt(id_publicacion, 10) },
-        //   required: true
-        // }
+        {
+          model: models.Publicacion,
+          as: 'publicacion',
+          attributes: ['id_publicacion', 'id_usuario', 'publicacion_data', 'publicacion_imagen', 'fecha_publicacion', 'id_tipo_privacidad'],
+          where: { id_publicacion: parseInt(id_publicacion, 10) },
+          required: true
+        }
       ],
       where: { id_publicacion: parseInt(id_publicacion, 10) }
     };
@@ -90,45 +90,6 @@ class ReaccionesService {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  async create(body) {
-    const newAccion = await models.Reaccion.create(body);
-    return newAccion;
-  }
-
-  async update(id, body) {
-    const accion_modificada = await this.findOne(id);
-    const rta = await accion_modificada.update(body);
-
-    return rta;
-  }
-
-  async delete(id) {
-    const accion_eliminada = await this.findOne(id);
-    await accion_eliminada.destroy();
-    return { id };
-  }
 }
 
 module.exports = ReaccionesService;

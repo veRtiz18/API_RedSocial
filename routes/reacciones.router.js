@@ -17,6 +17,7 @@ router.get('/', async (req, res, next) => {
     next(error);
   }
 });
+
 //se usa para ver que usuarios reaccionaron a una publicación
 router.get('/reacciones_detail/',
   validatorHandler(queryReaccionByUserSchema, 'query'),
@@ -54,9 +55,7 @@ router.get('/reacciones_publicacion/:id_publicacion',
     }
   })
 
-
-
-
+//borrar registro de reaccion
 router.delete('/:id_reaccion', async (req, res) => {
   const { id_reaccion } = req.params;
   const respuesta = await service.delete(id_reaccion);
