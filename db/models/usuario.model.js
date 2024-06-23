@@ -13,6 +13,14 @@ const UsuarioSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
+  ape1: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  ape2: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
   correo_electronico: {
     allowNull: false,
     type: DataTypes.STRING,
