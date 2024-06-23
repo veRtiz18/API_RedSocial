@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('API PARA NOTIFICACIONES');
+  res.send('API CAMDEV V1');
 });
 
 routerApi(app);

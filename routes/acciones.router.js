@@ -4,9 +4,6 @@ const AccionesService = require('./../services/acciones.service');
 const validatorHandler = require('./../middlewares/validator.handler');
 const { createAccionSchema, updateAccionSchema, getAccionSchema } = require('./../schemas/accion.schema')
 
-
-//implementacion de middlewares y validacion de datos
-//const {createNotificacionSchema, updateNotificacionSchema, getNotificacionSchema } = require('./../schemas/notificaciones.schema');
 const router = express.Router();
 const service = new AccionesService();
 

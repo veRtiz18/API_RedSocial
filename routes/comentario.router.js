@@ -2,8 +2,12 @@ const express = require('express');
 
 const ComentarioService = require('./../services/comentarios.service');
 const validatorHandler = require('./../middlewares/validator.handler');
-const { createComentarioSchema, updateComentarioSchema, getComentarioSchema, getCountComentario, queryComentarioByUserSchema }
-  = require('./../schemas/comentario.schema')
+const {
+  createComentarioSchema,
+  updateComentarioSchema,
+  getComentarioSchema,
+  getCountComentario,
+  queryComentarioByUserSchema}= require('./../schemas/comentario.schema')
 
 const router = express.Router();
 const service = new ComentarioService();
@@ -29,7 +33,7 @@ router.get('/comentarios_publicacion/:id_publicacion',
     }
   });
 
-//Para saber quienes comentaron y quienes no
+//Para recuperar los comentarios pertenecientes a una sola publicación.
 router.get('/comentarios_detail/',
   validatorHandler(queryComentarioByUserSchema, 'query'),
   async (req, res, next) => {
@@ -40,7 +44,6 @@ router.get('/comentarios_detail/',
       next(error);
     }
   });
-
 
 //Busqueda de comentario por medio de su id
 router.get('/:id_comentario',
@@ -54,7 +57,6 @@ router.get('/:id_comentario',
       next(error);
     }
   });
-
 
 router.post('/', validatorHandler(createComentarioSchema, 'body'),
   async (req, res) => {
@@ -76,13 +78,13 @@ router.patch('/:id_comentario',
       next(error);
     }
   }
-)
+);
 
 router.delete('/:id_comentario', async (req, res) => {
   const { id_comentario } = req.params;
   const respuesta = await service.delete(id_comentario);
   res.json(respuesta);
-})
+});
 
 module.exports = router;
 
