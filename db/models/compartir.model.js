@@ -43,12 +43,12 @@ const CompartirSchema = {
 
 class Compartir extends Model {
   static associate(models) {
-    this.hasMany(models.Usuario, {
+    this.belongsTo(models.Usuario, {
       as: 'usuario',
       foreignKey: 'id_usuario',
     });
 
-    this.hasMany(models.Publicacion, {
+    this.belongsTo(models.Publicacion, {
       as: 'publicacion',
       foreignKey: 'id_publicacion',
     });
@@ -59,10 +59,11 @@ class Compartir extends Model {
       sequelize,
       tableName: COMPARTIR_TABLE,
       modelName: 'Compartir',
-      timestamps: false
-    }
+      timestamps: false,
+    };
   }
 }
+
 
 module.exports = {
   COMPARTIR_TABLE, CompartirSchema, Compartir

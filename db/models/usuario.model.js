@@ -47,12 +47,14 @@ class Usuario extends Model {
     });
 
     this.hasMany(models.Publicacion, {
-      as: 'usuario',
+      as: 'publicaciones',
       foreignKey: 'id_usuario',
     });
 
-
-
+    this.hasMany(models.Compartir, {
+      as: 'compartidos',
+      foreignKey: 'id_usuario',
+    });
   }
 
   static config(sequelize) {
@@ -64,6 +66,7 @@ class Usuario extends Model {
     };
   }
 }
+
 
 module.exports = {
   USUARIO_TABLE, UsuarioSchema, Usuario

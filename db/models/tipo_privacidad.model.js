@@ -7,13 +7,12 @@ const Tipo_Privacidad_Schema = {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER
   },
   nombre_tipo_privacidad: {
     allowNull: false,
     type: DataTypes.STRING
-  },
-  // Otros campos según tu necesidad
+  }
 };
 
 class TipoPrivacidad extends Model {
@@ -30,10 +29,8 @@ class TipoPrivacidad extends Model {
       tableName: TIPO_PRIVACIDAD_TABLE,
       modelName: 'TipoPrivacidad',
       timestamps: false
-    }
+    };
   }
 }
 
-module.exports = {
-  TIPO_PRIVACIDAD_TABLE, Tipo_Privacidad_Schema, TipoPrivacidad
-};
+module.exports = { TIPO_PRIVACIDAD_TABLE, Tipo_Privacidad_Schema, TipoPrivacidad };

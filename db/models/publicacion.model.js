@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
+
 const { USUARIO_TABLE } = require('./usuario.model');
 const { TIPO_PRIVACIDAD_TABLE } = require('./tipo_privacidad.model');
-
 
 const PUBLICACION_TABLE = 'publicacion';
 
@@ -46,25 +46,18 @@ const PublicacionSchema = {
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE',
   },
+};
 
-}
 class Publicacion extends Model {
   static associate(models) {
-
     this.belongsTo(models.Usuario, {
       as: 'usuario',
-      foreignKey: 'id_usuario'
+      foreignKey: 'id_usuario',
     });
 
-    this.belongsTo(models.TipoPrivacidad, {
-      as: 'privacidad',
-      foreignKey: 'id_tipo_privacidad'
-    });
-
-
-    this.hasMany(models.Reaccion, {
-      as: 'publicacion',
-      foreignKey: 'id_publicacion'
+    this.hasMany(models.Compartir, {
+      as: 'compartidos',
+      foreignKey: 'id_publicacion',
     });
   }
 
@@ -73,8 +66,8 @@ class Publicacion extends Model {
       sequelize,
       tableName: PUBLICACION_TABLE,
       modelName: 'Publicacion',
-      timestamps: false
-    }
+      timestamps: false,
+    };
   }
 }
 
