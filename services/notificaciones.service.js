@@ -124,26 +124,22 @@ class NotificacionesService {
     return { notifications_not_read: count };
   }
 
-  async update(id, body) {
-    const notificacion_modificada = await this.findOne(id);
+  async update(id_notificacion, body) {
+    const notificacion_modificada = await this.findOne(id_notificacion);
     const rta = await notificacion_modificada.update(body);
     return rta;
   }
-
 
   async create(body) {
     const newNotificacion = await models.Notificacion.create(body);
     return newNotificacion;
   }
 
-
-
-  async delete(id) {
-    const notificacion_eliminada = await this.findOne(id);
+  async delete(id_notificacion) {
+    const notificacion_eliminada = await this.findOne(id_notificacion);
     await notificacion_eliminada.destroy();
-    return { id };
+    return { "Registro eliminado": id_notificacion };
   }
-
 }
 
 module.exports = NotificacionesService;

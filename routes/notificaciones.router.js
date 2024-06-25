@@ -11,9 +11,6 @@ const {
   queryNotificacionSchema, queryNotificacionByUserSchema
 } = require('./../schemas/notificacion.schema')
 
-
-//implementacion de middlewares y validacion de datos
-//const {createNotificacionSchema, updateNotificacionSchema, getNotificacionSchema } = require('./../schemas/notificaciones.schema');
 const router = express.Router();
 const service = new NotificacionesService();
 
@@ -41,17 +38,17 @@ router.get('/find_by_user/',
   });
 
 
-router.get('/:id',
+router.get('/:id_notificacion',
   validatorHandler(getNotificacionSchema, 'params'),
   async (req, res, next) => {
     try {
-      const { id } = req.params;
-      const get_notificaciones = await service.findOne(id);
+      const { id_notificacion } = req.params;
+      const get_notificaciones = await service.findOne(id_notificacion);
       res.json(get_notificaciones);
     } catch (error) {
       next(error);
     }
-  })
+  });
 
 //para recuperar el número de notificaciones por leídas y no leídas
 router.get('/notification_active/:id_usuario',
@@ -63,24 +60,23 @@ router.get('/notification_active/:id_usuario',
     } catch (error) {
       next(error);
     }
-  })
+  });
 
-
-router.patch('/:id',
+router.patch('/:id_notificacion',
   validatorHandler(getNotificacionSchema, 'params'),
   validatorHandler(updateNotificacionSchema, 'body'),
   async (req, res, next) => {
     try {
-      const { id } = req.params;
+      const { id_notificacion } = req.params;
       const body = req.body;
-      const notificacion = await service.update(id, body);
+      const notificacion = await service.update(id_notificacion, body);
       res.json(notificacion);
     } catch (error) {
       next(error);
 
     }
   }
-)
+);
 
 router.post('/', validatorHandler(createNotificacionSchema, 'body'),
   async (req, res) => {
@@ -89,10 +85,15 @@ router.post('/', validatorHandler(createNotificacionSchema, 'body'),
     res.status(200).json(nuevaNotificacion);
   });
 
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
-  const respuesta = await service.delete(id);
-  res.json(respuesta);
+router.delete('/:id_notificacion', async (req, res) => {
+  const { id_notificacion } = req.params;
+  try {
+    const respuesta = await service.delete(id_notificacion);
+    res.json(respuesta);
+  } catch (error) {
+    res.json({message: error.message});
+  }
+
 })
 module.exports = router;
 

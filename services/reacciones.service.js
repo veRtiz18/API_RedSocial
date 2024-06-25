@@ -2,7 +2,6 @@ const { faker, th } = require('@faker-js/faker');
 
 const { models } = require('../libs/sequalize');
 const sequalize = require('../libs/sequalize');
-
 const boom = require("@hapi/boom");
 const { required } = require('joi');
 
@@ -45,7 +44,7 @@ class ReaccionesService {
         {
           model: models.Usuario,
           as: 'usuario',
-          attributes: ['nombre_usuario'], // Specify the fields you need
+          attributes: ['nombre_usuario', 'ape1', 'ape2']
         },
         {
           model: models.Publicacion,
@@ -79,17 +78,10 @@ class ReaccionesService {
     const nuevaReaccion = await models.Reaccion.create(body);
     return nuevaReaccion;
   }
-
-
   async delete(id_reaccion) {
     const reaccion_eliminada = await this.findOne(id_reaccion);
     await reaccion_eliminada.destroy();
     return { "Registro eliminado": id_reaccion };
   }
-
-
-
-
 }
-
 module.exports = ReaccionesService;

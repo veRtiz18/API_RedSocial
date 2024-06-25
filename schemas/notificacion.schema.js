@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 //validando el como debe de llegar el tipo de dato
-const id = Joi.number().integer();
+const id_notificacion = Joi.number().integer();
 const id_usuario = Joi.number().integer();
 const id_usuario_origin = Joi.number().integer();
 const id_accion = Joi.number().integer();
@@ -14,7 +14,7 @@ const offset = Joi.number().integer();
 
 
 const createNotificacionSchema = Joi.object({
-  id: id,
+  id_notificacion: id_notificacion,
   id_usuario: id_usuario.required(),
   id_usuario_origin: id_usuario_origin.required(),
   fecha_notificacion: fecha_notificacion,
@@ -36,7 +36,7 @@ const updateNotificacionSchema = Joi.object({
 
 
 const getNotificacionSchema = Joi.object({
-  id: id.required(),
+  id_notificacion: id_notificacion.required(),
 });
 
 

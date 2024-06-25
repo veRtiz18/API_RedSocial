@@ -15,6 +15,14 @@ class AmigosService {
     return rta;
   }
 
+  async findOne(id_amistad) {
+    const rta = await models.Amigo.findByPk(id_amistad);
+    if (!rta) {
+      return { message: `No existe un registro con el id ${id_amistad}` }
+    }
+    return rta;
+  }
+
   async findByIdAmigo1(id_amigo1) {
     const options = {
       include: [
@@ -46,7 +54,7 @@ class AmigosService {
         {
           model: models.Usuario,
           as: 'amigo1',
-          attributes: ['nombre_usuario', 'ape1', 'ape2','foto_perfil'],
+          attributes: ['nombre_usuario', 'ape1', 'ape2', 'foto_perfil'],
         },
         {
           model: models.Usuario,
@@ -71,25 +79,16 @@ class AmigosService {
   }
 
 
-  //actualizar un registro
-  async update(id_reaccion, body) {
-    const reaccion_modificada = await this.findOne(id_reaccion);
-    const rta = await reaccion_modificada.update(body);
-    return rta;
-  }
-
   async create(body) {
-    const nuevaReaccion = await models.Reaccion.create(body);
-    return nuevaReaccion;
+    const nueva_amistad = await models.Amigo.create(body);
+    return nueva_amistad;
   }
 
-
-  async delete(id_reaccion) {
-    const reaccion_eliminada = await this.findOne(id_reaccion);
-    await reaccion_eliminada.destroy();
-    return { "Registro eliminado": id_reaccion };
+  async delete(id_amistad) {
+    const amistad_eliminada = await this.findOne(id_amistad);
+    await amistad_eliminada.destroy();
+    return { "Registro eliminado": id_amistad };
   }
-
 
 }
 
