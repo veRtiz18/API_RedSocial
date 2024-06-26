@@ -29,7 +29,7 @@ class AmigosService {
         {
           model: models.Usuario,
           as: 'amigo2',
-          attributes: ['nombre_usuario', 'ape1', 'ape2'],
+          attributes: ['nombre_usuario', 'ap1', 'ap2'],
         },
       ],
       where: {
@@ -54,12 +54,12 @@ class AmigosService {
         {
           model: models.Usuario,
           as: 'amigo1',
-          attributes: ['nombre_usuario', 'ape1', 'ape2', 'foto_perfil'],
+          attributes: ['nombre_usuario', 'ap1', 'ap2', 'foto_perfil'],
         },
         {
           model: models.Usuario,
           as: 'amigo2',
-          attributes: ['nombre_usuario', 'ape1', 'ape2', 'foto_perfil'],
+          attributes: ['nombre_usuario', 'ap1', 'ap2', 'foto_perfil'],
         },
       ],
       where: {

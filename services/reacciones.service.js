@@ -44,7 +44,7 @@ class ReaccionesService {
         {
           model: models.Usuario,
           as: 'usuario',
-          attributes: ['nombre_usuario', 'ape1', 'ape2']
+          attributes: ['nombre_usuario', 'ap1', 'ap2']
         },
         {
           model: models.Publicacion,
