@@ -47,16 +47,14 @@ const ComentarioSchema = {
 
 class Comentario extends Model {
   static associate(models) {
-    // Modelo Comentario
-    models.Comentario.belongsTo(models.Usuario, {
+    this.belongsTo(models.Usuario, {
+      as: 'usuario',
       foreignKey: 'id_usuario',
-      as: 'usuario'
     });
 
-    // Modelo Usuario
-    models.Usuario.hasMany(models.Comentario, {
-      foreignKey: 'id_usuario',
-      as: 'comentarios'
+    this.belongsTo(models.Publicacion, {
+      as: 'publicacion',
+      foreignKey: 'id_publicacion',
     });
 
   }

@@ -1,3 +1,4 @@
+
 'use strict';
 
 const { AmigoSchema, AMIGO_TABLE } = require('./../models/amigo.model');

@@ -1,3 +1,4 @@
+
 'use strict';
 
 const { ReaccionSchema, REACCION_TABLE } = require('./../models/reaccion.model');

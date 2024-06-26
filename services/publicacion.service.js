@@ -1,9 +1,9 @@
 const boom = require('@hapi/boom');
-const { models } = require('./../libs/sequalize');
-const sequalize = require('./../libs/sequalize');
+const { models } = require('../libs/sequalize');
+// const bcrypt = require('bcrypt');
 
 class PublicacionService {
-  constructor() { }
+  constructor() {}
 
   async create(data) {
     const newPublicacion = await models.Publicacion.create(data);

@@ -59,11 +59,10 @@ class Compartir extends Model {
       sequelize,
       tableName: COMPARTIR_TABLE,
       modelName: 'Compartir',
-      timestamps: false,
-    };
+      timestamps: false
+    }
   }
 }
-
 
 module.exports = {
   COMPARTIR_TABLE, CompartirSchema, Compartir

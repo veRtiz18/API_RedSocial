@@ -7,53 +7,59 @@ const UsuarioSchema = {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER
   },
   nombre_usuario: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   },
-  ape1: {
+  ap1: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   },
-  ape2: {
+  ap2: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   },
   correo_electronico: {
     allowNull: false,
     type: DataTypes.STRING,
+    unique: true
   },
   contrasenia: {
     allowNull: false,
-    type: DataTypes.STRING,
+    type: DataTypes.STRING
   },
   fecha_nacimiento: {
     allowNull: false,
-    type: DataTypes.DATE,
+    type: DataTypes.DATE
   },
   foto_perfil: {
-    allowNull: true,
-    type: DataTypes.STRING,
-  },
+    allowNull: false,
+    type: DataTypes.STRING
+  }
 };
 
 class Usuario extends Model {
   static associate(models) {
-    this.hasMany(models.Reaccion, {
-      as: 'reacciones',
-      foreignKey: 'id_usuario',
-    });
-
     this.hasMany(models.Publicacion, {
       as: 'publicaciones',
-      foreignKey: 'id_usuario',
+      foreignKey: 'id_usuario'
+    });
+
+    this.hasMany(models.Reaccion, {
+      as: 'reacciones',
+      foreignKey: 'id_usuario'
+    });
+
+    this.hasMany(models.Comentario, {
+      as: 'comentarios',
+      foreignKey: 'id_usuario'
     });
 
     this.hasMany(models.Compartir, {
       as: 'compartidos',
-      foreignKey: 'id_usuario',
+      foreignKey: 'id_usuario'
     });
   }
 
@@ -62,12 +68,9 @@ class Usuario extends Model {
       sequelize,
       tableName: USUARIO_TABLE,
       modelName: 'Usuario',
-      timestamps: false,
+      timestamps: false
     };
   }
 }
 
-
-module.exports = {
-  USUARIO_TABLE, UsuarioSchema, Usuario
-};
+module.exports = { USUARIO_TABLE, UsuarioSchema, Usuario };

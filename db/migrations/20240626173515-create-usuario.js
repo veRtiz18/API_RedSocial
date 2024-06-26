@@ -1,4 +1,5 @@
 
+
 'use strict';
 
 const { UsuarioSchema, USUARIO_TABLE } = require('./../models/usuario.model');
@@ -12,5 +13,3 @@ module.exports = {
     await queryInterface.dropTable(USUARIO_TABLE);
   }
 };
-
-

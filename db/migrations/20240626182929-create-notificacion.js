@@ -1,5 +1,4 @@
 
-
 'use strict';
 
 const { NotificacionSchema, NOTIFICACION_TABLE } = require('./../models/notificacion.model');
