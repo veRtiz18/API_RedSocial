@@ -43,12 +43,12 @@ class CompartidosService {
         {
           model: models.Usuario,
           as: 'usuario',
-          attributes: ['nombre_usuario'], // Especifica los campos que necesitas
+          attributes: ['nombre_usuario', 'ape1', 'ape2'], // Especifica los campos que necesitas
         },
         {
           model: models.Publicacion, // Corrected model here
           as: 'publicacion', // Correct alias here
-          attributes: ['publicacion_data', 'publicacion_imagen'], // Especifica los campos que necesitas
+          attributes: ['id_usuario', 'publicacion_data', 'publicacion_imagen', 'fecha_publicacion'], // Especifica los campos que necesitas
         },
       ],
       where: { id_usuario: parseInt(id_usuario, 10) },
