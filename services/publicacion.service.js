@@ -3,7 +3,7 @@ const { models } = require('../libs/sequalize');
 // const bcrypt = require('bcrypt');
 
 class PublicacionService {
-  constructor() {}
+  constructor() { }
 
   async create(data) {
     const newPublicacion = await models.Publicacion.create(data);
@@ -61,6 +61,31 @@ class PublicacionService {
       throw boom.notFound('Publication not found');
     }
     return publicacion;
+  }
+
+
+  async findPostsByUser(query) {
+    const { limit, offset, id_usuario } = query;
+    const options = {
+      include: [
+        {
+          model: models.Usuario,
+          as: 'usuario',
+          attributes: ['nombre_usuario', 'ap1', 'ap2'], // Especifica los campos que necesitas
+        },
+
+      ],
+      where: { id_usuario: parseInt(id_usuario, 10) },
+      order: [['fecha_publicacion', 'DESC']],
+    };
+
+    if (limit && offset) {
+      options.limit = parseInt(limit, 10);
+      options.offset = parseInt(offset, 10);
+    }
+
+    const rta = await models.Publicacion.findAll(options);
+    return rta;
   }
 
   async update(id, changes) {

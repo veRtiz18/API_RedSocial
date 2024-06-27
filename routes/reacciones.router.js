@@ -55,6 +55,18 @@ router.get('/reacciones_publicacion/:id_publicacion',
     }
   })
 
+router.post('/',
+  validatorHandler(createReaccionSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newReaccion = await service.create(body);
+      res.status(201).json(newReaccion);
+    } catch (error) {
+      next(error);
+    }
+  });
+
 //borrar registro de reaccion
 router.delete('/:id_reaccion', async (req, res) => {
   const { id_reaccion } = req.params;

@@ -13,7 +13,7 @@ const offset = Joi.number().integer();
 const createPublicacionSchema = Joi.object({
   id_usuario: id_usuario.required(),
   publicacion_data: publicacion_data.required(),
-  publicacion_imagen: publicacion_imagen.required(),
+  publicacion_imagen: publicacion_imagen,
   fecha_publicacion: fecha_publicacion.required(),
   id_tipo_privacidad: id_tipo_privacidad.required(),
 });
@@ -34,4 +34,10 @@ const queryPublicacionSchema = Joi.object({
   offset
 });
 
-module.exports = { createPublicacionSchema, updatePublicacionSchema, getPublicacionSchema, queryPublicacionSchema };
+const queryPostsByUserSchema = Joi.object({
+  limit: limit,
+  offset: offset,
+  id_usuario: id_usuario.required()
+})
+
+module.exports = { createPublicacionSchema, updatePublicacionSchema, getPublicacionSchema, queryPublicacionSchema, queryPostsByUserSchema };

@@ -2,7 +2,9 @@ const express = require('express');
 
 const PublicacionService = require('../services/publicacion.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const { createPublicacionSchema, updatePublicacionSchema, getPublicacionSchema, queryPublicacionSchema } = require('../schemas/publicacion.schema');
+const { createPublicacionSchema, updatePublicacionSchema, getPublicacionSchema, queryPublicacionSchema,
+  queryPostsByUserSchema
+} = require('../schemas/publicacion.schema');
 
 const router = express.Router();
 const service = new PublicacionService();
@@ -19,6 +21,16 @@ router.get('/',
   }
 );
 
+router.get('/find_by_user/',
+  validatorHandler(queryPostsByUserSchema, 'query'),
+  async (req, res, next) => {
+    try {
+      const get_posts = await service.findPostsByUser(req.query);
+      res.json(get_posts);
+    } catch (error) {
+      next(error);
+    }
+  });
 router.get('/filter', (req, res) => {
   res.send('Yo soy un filter');
 });
@@ -35,6 +47,8 @@ router.get('/:id_publicacion',
     }
   }
 );
+
+
 
 router.post('/',
   validatorHandler(createPublicacionSchema, 'body'),
